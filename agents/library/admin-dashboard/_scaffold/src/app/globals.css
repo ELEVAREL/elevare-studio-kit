@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ── Design tokens — swap these hexes for your brand. Everything (cards, buttons,
+   the live-traffic panel, and the Stripe Appearance) reads from them. ────── */
+@theme {
+  --color-bg: #FAFAF9;
+  --color-surface: #FFFFFF;
+  --color-surface-sink: #F4F4F2;
+  --color-ink: #1C1B1A;
+  --color-muted: #6B6660;
+  --color-muted-soft: #8A857E;
+  --color-border: #E7E4DF;
+  --color-border-strong: #D6D2CB;
+
+  --color-primary: #4F46E5;
+  --color-primary-hover: #4338CA;
+  --color-primary-ink: #4338CA;
+  --color-primary-tint: #ECEBFB;
+
+  --color-sage: #4B7A52;
+  --color-sage-tint: #E4EFE5;
+  --color-sage-ink: #2F5535;
+  --color-warn: #8A5A2B;
+  --color-warn-tint: #F3E7D6;
+  --color-warn-ink: #6E4415;
+  --color-danger: #B03A3A;
+  --color-tint-ink-rose: #7E3B4B;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-inter), Georgia, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+@layer base {
+  body { background: var(--color-bg); color: var(--color-ink); font-family: var(--font-sans); }
+}
+
+/* ── Minimal component classes referenced across the scaffold. ──────────── */
+@layer components {
+  .container-x { margin-inline: auto; max-width: 72rem; padding-inline: 1rem; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--color-muted); font-weight: 600; }
+  .label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--color-muted); }
+  .field {
+    width: 100%; height: 42px; padding-inline: 12px; border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-strong); background: var(--color-surface); color: var(--color-ink);
+    font-size: 15px; outline: none;
+  }
+  .field:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-tint); }
+  textarea.field { height: auto; padding-block: 10px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 42px; padding-inline: 18px; border-radius: var(--radius-md);
+    font-weight: 600; font-size: 15px; cursor: pointer; border: 1px solid transparent;
+    transition: background-color .15s ease, border-color .15s ease, transform .1s ease;
+  }
+  .btn:disabled { opacity: .6; cursor: not-allowed; }
+  .btn-lg { height: 46px; padding-inline: 22px; }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: var(--color-primary-hover); }
+  .btn-secondary { background: var(--color-surface); border-color: var(--color-border-strong); color: var(--color-ink); }
+  .btn-secondary:hover:not(:disabled) { background: var(--color-surface-sink); }
+}

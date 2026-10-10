@@ -1,0 +1,16 @@
+# Newsprint / low-quality-stock legibility rules for print ads
+
+**When to reach for it:** the ad will be printed on **cheap, absorbent, low-contrast stock** — a community newspaper, a bulk flyer, a phone-book-style directory, a photocopied handout — where ink spreads (dot gain), whites are actually cream/grey, thin lines close up, and small text turns to mush. These are the "will it survive the press" rules that a screen-perfect design ignores. Apply them at design time in [`shared-ad-design-system.md`](shared-ad-design-system.md); skip most of them for glossy/coated stock or digital-only.
+
+**Assumes / adapt:**
+- **Cream background, not pure white.** Newsprint is never `#fff`; a warm off-white (`#F4EDE0`-ish) reads as intended paper instead of a dingy grey you didn't choose. It also stops the "why is my white ad grey" surprise.
+- **Ink or navy body text — never a light/brand tint as text.** Wood/gold/tan look great as rules and accents but vanish as body copy on absorbent stock. Body = near-black ink (`#26303F`) or deep navy. Reserve gold/wood/burgundy for the phone number, rules, bullets, and the logo — structural, not textual.
+- **Minimum type + phone size ≈ 0.375in.** On a 5in-wide @ 300 DPI (1500px) canvas that's ~**113px**; keep all body copy and especially the phone number at or above it. Small legal/footer text can drop but stays readable. Dot gain eats anything smaller.
+- **Hairlines ≥ 1.5px** on the design canvas. A true 1px rule can drop out or break up on press; 1.5px is the safe floor for frames, dividers, and the feature-list bullet.
+- **Keep everything inside the trim / safe margin.** The Traway canvas pads `113px` (~0.375in) all around and only the footer plate breaks to full-bleed. Don't put text or the phone number in the outer ~0.25in — trimming/registration drift can clip it. If the placement is truly full-bleed, add real bleed beyond the trim; if it's a bordered placement (most newspaper ads), inset.
+- **Don't full-bleed a low-res source photo.** The Traway photos are ~640px sources; blown up to fill a 1500px canvas they'd smear. Frame them smaller — a hairline-`.frame` box at ≤ ~4in with `object-fit:cover` + a slight `contrast/brightness/saturate` bump — so the softness reads as an intentional editorial crop, not a low-res mistake. Never place a small raster where the viewer expects sharp detail.
+- **Boost photo contrast/saturation slightly in CSS** (`filter:contrast(1.07) brightness(1.05) saturate(1.06)`) because press flattens midtones and dulls color. Test both extremes — too much and shadows plug up.
+- **Confirm phone number + address with the client before it prints.** A print run is irreversible; a transposed digit is a dead campaign. Put this line in the delivery email (see [`resend-attachment-delivery.md`](resend-attachment-delivery.md)).
+- **Give the vendor both PNG and PDF.** Some newspaper systems want a flattened high-DPI raster; some want vector. Shipping both means you never get bounced for the wrong format. See [`html-to-300dpi-print-ad.md`](html-to-300dpi-print-ad.md).
+
+**Reference:** `D:\TrawayHome\ad\build.mjs` (the design honoring these rules) + the newsprint notes in memory `studio-print-and-video-ad-pipeline`.
